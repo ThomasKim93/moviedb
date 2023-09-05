@@ -22,7 +22,10 @@ function Home() {
     // Trending Movies
     axios.get(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`)
       .then(response => {
-        setTrendingMovies(response.data.results);
+        setTrendingMovies(response.data.results.map(movie => ({
+          ...movie,
+          overview: movie.overview,
+        })));
       })
       .catch(error => {
         console.error(error);
@@ -76,7 +79,7 @@ function Home() {
             <div className="main-list2-1">
               <div className="main-list3">
                 <h3>{movie.title}</h3>
-                <p>{movie.id}</p>
+                <p>{movie.overview}</p>
                 
                 <div className="main-list4">
                   <button>
@@ -87,14 +90,17 @@ function Home() {
                   </button>
                 </div>
               </div>  
-            
-              <img
+              <figure className="poster-main">
+                
+                <img
 
-                className="main-poster"
-                src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
-                alt={[]}/>
-            
+                  className="main-poster"
+                  src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
+                  alt={[]}/>
+              
+              </figure>            
             </div>
+            
             <figure className="main-background1">
               <img
               className="main-background2"
