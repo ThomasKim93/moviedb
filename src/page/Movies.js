@@ -4,7 +4,7 @@ import axios from "axios";
 export default function Movie() {
   const [searchQuery, setSearchQuery] = useState("");
   const [allMovieData, setAllMovieData] = useState([]);
-  const [visibleMovies, setVisibleMovies] = useState(8); // 초기에 보이는 영화 수
+  const [visibleMovies, setVisibleMovies] = useState(6); // 초기에 보이는 영화 수
   const dbData = axios.create({
     baseURL: "https://api.themoviedb.org/3",
     params: { api_key: "f89a6c1f22aca3858a4ae7aef10de967" },
@@ -67,6 +67,7 @@ export default function Movie() {
           {displayedMovies.map((e) => (
             <li key={e.id}>
               <img
+                className="movie-poster"
                 src={`https://image.tmdb.org/t/p/w200${e.poster_path}`}
                 alt={e.title}
               />
