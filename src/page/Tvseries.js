@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
+
 
 export default function TVSeries() {
   const [searchQuery, setSearchQuery] = useState("");
   const [allTVSeriesData, setAllTVSeriesData] = useState([]);
-  const [visibleTVSeries, setVisibleTVSeries] = useState(8); // 초기에 보이는 TV 시리즈 수
+  const [visibleTVSeries, setVisibleTVSeries] = useState(6); // 초기에 보이는 TV 시리즈 수
   const dbData = axios.create({
     baseURL: "https://api.themoviedb.org/3",
     params: { api_key: "f89a6c1f22aca3858a4ae7aef10de967" },
@@ -66,11 +68,14 @@ export default function TVSeries() {
         <ul className="movie-flex">
           {displayedTVSeries.map((series) => (
             <li key={series.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w200${series.poster_path}`}
-                alt={series.name}
-              />
-              <h3>{series.name}</h3>
+              <Link to={`/tv/${series.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${series.poster_path}`}
+                  alt={series.name}
+                />
+              </Link>
+                <h3>{series.name}</h3>
+             
             </li>
           ))}
         </ul>

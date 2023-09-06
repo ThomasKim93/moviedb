@@ -4,10 +4,8 @@ import Movies from './page/Movies';
 import TvSeries from './page/Tvseries';
 import './App.css'; 
 import React, { useState, useEffect } from 'react';
-
-
-
-
+import TvSeriesDetail from "./page/TvseriesDetail";
+import MovieDetail from "./page/MovieDetail";
 
 
 
@@ -64,7 +62,7 @@ function App() {
                   <Link to="/movies" className="header-style">Movies</Link>
                 </li>
                 <li>
-                  <Link to="/tv-series" className="header-style">TV Series</Link>
+                  <Link to="/tv" className="header-style">TV Series</Link>
                 </li>
               </ul>
             </nav>
@@ -74,8 +72,10 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/movies/:id" element={<MovieDetail />} />
           <Route path="/movies" element={<Movies />} />
-          <Route path="/tv-series" element={<TvSeries />} />
+          <Route path="/tv" element={<TvSeries />} />
+          <Route path="/tv/:id" element={<TvSeriesDetail />} />
         </Routes>
 
       </div>

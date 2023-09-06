@@ -1,6 +1,5 @@
 {
   "homepage": "https://thomaskim93.github.io/moviedb/",
-
   "name": "movies",
   "version": "0.1.0",
   "private": true,
@@ -14,6 +13,7 @@
     "react-id-swiper": "^4.0.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+    "react-youtube": "^10.1.0",
     "styled-components": "^6.0.7",
     "swiper": "^10.2.0",
     "web-vitals": "^2.1.4"

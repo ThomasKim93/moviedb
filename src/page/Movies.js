@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
+
 
 export default function Movie() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,16 +63,19 @@ export default function Movie() {
         <button onClick={() => setSearchQuery("")}>검색</button>
       </div>
 
-      <section className="movie">
+      <section className="movie" >
         <h2>MOVIE</h2>
         <ul className="movie-flex">
           {displayedMovies.map((e) => (
             <li key={e.id}>
-              <img
-                className="movie-poster"
-                src={`https://image.tmdb.org/t/p/w200${e.poster_path}`}
-                alt={e.title}
-              />
+              <Link to={`/movies/${e.id}`}>
+                <img
+                  className="movie-poster"
+                  src={`https://image.tmdb.org/t/p/w200${e.poster_path}`}
+                  alt={e.title}
+                />
+
+              </Link>
               <h3>{e.title}</h3>
             </li>
           ))}

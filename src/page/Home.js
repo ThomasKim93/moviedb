@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
-
+import { Link } from 'react-router-dom';
 
 const API_KEY = 'f89a6c1f22aca3858a4ae7aef10de967'; // 실제 API 키로 변경
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -90,21 +89,26 @@ function Home() {
                   </button>
                 </div>
               </div>  
-              <figure className="poster-main">
-                
-                <img
-
-                  className="main-poster"
-                  src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
-                  alt={[]}/>
               
-              </figure>            
+              <figure className="poster-main">
+             
+              <Link to={`/movies/${movie.id}`}>
+              
+                  <img
+
+                    className="main-poster"
+                    src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
+                    alt={[]}/>
+              </Link>
+              </figure>   
+              
             </div>
+            
             
             <figure className="main-background1">
               <img
               className="main-background2"
-              src={`${IMAGE_BASE_URL}${LARGE_IMAGE_SIZE}${movie.poster_path}`}
+              src={`${IMAGE_BASE_URL}${LARGE_IMAGE_SIZE}${movie.backdrop_path}`}
               alt={[]}
               />
               <div class="gradient-overlay"></div>
@@ -120,16 +124,22 @@ function Home() {
       <h2 className="title">Trending Movies</h2>
       <Swiper 
         className="mySwiper movie-list" 
-        slidesPerView={4.5}
-        spaceBetween={20} >
+        slidesPerView={4.0}
+        spaceBetween={30} >
         {trendingMovies.map(movie => (
           <SwiperSlide className="movie-list2" key={movie.id}>
-            
+            <Link to={`/movies/${movie.id}`}>
+
               <img
                 src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
                 alt={`${movie.title} Poster`}/>
 
                 <h3>{movie.title}</h3>
+            </Link>
+       
+
+  
+              
             </SwiperSlide>
         ))}
 
@@ -138,16 +148,20 @@ function Home() {
       <h className="title">Top_Rated Movies</h>
       <Swiper 
         className="mySwiper movie-list" 
-        slidesPerView={4.5}
-        spaceBetween={20}
+        slidesPerView={4.0}
+        spaceBetween={30}
         >
         {topRatedMovies.map(movie => (
           <SwiperSlide className="movie-list2" key={movie.id}>
-            <img
-              src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
-              alt={`${movie.title} Poster`}
-              />
-              <h3>{movie.title}</h3>
+              <Link to={`/movies/${movie.id}`}>
+              <img
+                src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
+                alt={`${movie.title} Poster`}
+                />
+                <h3>{movie.title}</h3>
+
+              </Link>
+
           </SwiperSlide>
         ))}
       </Swiper>
@@ -155,36 +169,44 @@ function Home() {
       <h2 className="title">Trending TV</h2>
       <Swiper 
       className="mySwiper movie-list" 
-      slidesPerView={4.5}
-      spaceBetween={20}
+      slidesPerView={4.0}
+      spaceBetween={30}
       >
-        {trendingTv.map(movie => (
-          <SwiperSlide className="movie-list2" key={movie.id}>
-            <img
-              src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
-              alt={`${movie.title} Poster`}
-              />
-            <h3>{movie.title}</h3>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        {trendingTv.map(series => (
+          <SwiperSlide className="movie-list2" key={series.id}>
+            <Link to={`/tv/${series.id}`}>
+              <img
+                src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${series.poster_path}`}
+                alt={`${series.name} Poster`}
+                />
+              <h3>{series.name}</h3>
 
-      <h2 className="title">Top Rated TV</h2>
-      <Swiper 
-      className="mySwiper movie-list" 
-      slidesPerView={4.5}
-      spaceBetween={20}
-      >
-        {topRatedTv.map(movie => (
-          <SwiperSlide className="movie-list2" key={movie.id}>
-            <img
-              src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${movie.poster_path}`}
-              alt={`${movie.title} Poster`}
-              />
-            <h3>{movie.title}</h3>
+            </Link>
+
+      
           </SwiperSlide>
         ))}
-      </Swiper>
+        </Swiper>
+
+        <h2 className="title">Top Rated TV</h2>
+        <Swiper 
+        className="mySwiper movie-list" 
+        slidesPerView={4.0}
+        spaceBetween={30}
+        >
+          {topRatedTv.map(series => (
+            <SwiperSlide className="movie-list2" key={series.id}>
+              <Link to={`/tv/${series.id}`}>
+                <img
+                  src={`${IMAGE_BASE_URL}${SMALL_IMAGE_SIZE}${series.poster_path}`}
+                  alt={`${series.name} Poster`}
+                  />
+                <h3>{series.name}</h3>
+
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       
     </div>
   );
